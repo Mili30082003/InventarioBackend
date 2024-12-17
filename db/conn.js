@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-const DB = process.env.MONGO_URI;
+const DB = 'mongodb+srv://mili-mb:Qop87AEmHES8lWEe@cluster0.aony1.mongodb.net/Inventario';
 
 mongoose
   .connect(DB)
