@@ -39,14 +39,23 @@ router.post("/register", async (req, res) => {
 // traer la informacion 
 router.get("/getdata", async (req, res) => {
   try {
+    // Verifica si la conexión a la base de datos es correcta
     const productdata = await productos.find();
+
+    if (!productdata || productdata.length === 0) {
+      // Si no hay datos, responder con un mensaje adecuado
+      return res.status(404).json({ message: "No se encontraron productos" });
+    }
+
     console.log(productdata); // Verifica qué datos están siendo retornados
-    res.status(201).json(productdata);
+    res.status(200).json(productdata); // Código de estado 200 para éxito
   } catch (error) {
+    // Log del error para ayudar en la depuración
     console.error("Error al obtener datos:", error);
-    res.status(500).json({ message: "Error al obtener los datos del producto" });
+    res.status(500).json({ message: "Error al obtener los datos del producto", error: error.message });
   }
 });
+
 
     
  router.delete("/delete/:id", async(req,res) => {
