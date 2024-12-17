@@ -1,5 +1,9 @@
-const mongoose = require('mongoose')
+require('dotenv').config();
+const mongoose = require('mongoose');
 
-const DB = "mongodb+srv://mili-mb:Qop87AEmHES8lWEe@cluster0.aony1.mongodb.net/Inventario"
+const DB = process.env.MONGO_URI;
 
-mongoose.connect(DB).then(() => console.log("Conectado a Mongo")).catch((error) => console.log(error.message));
+mongoose
+  .connect(DB)
+  .then(() => console.log("Conectado a Mongo"))
+  .catch((error) => console.log(error.message));
